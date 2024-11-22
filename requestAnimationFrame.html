@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animação do Quadrado</title>
+    <style>
+        /* Estilo para o quadrado: define o tamanho, cor e a posição absoluta do quadrado */
+        .square {
+            width: 50px;               /* Define a largura do quadrado */
+            height: 50px;              /* Define a altura do quadrado */
+            background-color: red;     /* Define a cor de fundo como vermelho */
+            position: absolute;        /* Posiciona o quadrado em relação ao corpo da página */
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- O quadrado é um div com o id 'square', que será movido pela animação -->
+    <div id="square" class="square"></div>
+
+    <script>
+        // Estado Inicial: Define as variáveis para controlar a animação
+        let position = 0;              // Posição inicial do quadrado (em pixels).
+        const speed = 2;               // A velocidade do movimento (2 pixels por "frame").
+        const square = document.getElementById('square');  // Seleciona o elemento do quadrado.
+
+        // Função de Animação: Responsável por mover o quadrado
+        function animate() {
+            position += speed;         // Atualiza a posição do quadrado.
+            square.style.transform = `translateX(${position}px)`;  // Aplica a transformação para mover o quadrado.
+
+            // Recursão: Verifica se o quadrado ainda está dentro da tela
+            if (position < window.innerWidth - square.offsetWidth) {
+                requestAnimationFrame(animate); // Chama a função animate novamente para continuar a animação.
+            }
+        }
+        
+        animate();  // Inicia a animação chamando a função animate() pela primeira vez.
+    </script>
+</body>
+</html>
